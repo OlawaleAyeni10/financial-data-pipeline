@@ -1,0 +1,5 @@
+pyspark
+faker
+pandas
+pytest
+pytest-mock
