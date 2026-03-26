@@ -9,29 +9,11 @@ from disk.
 """
 
 import pytest
-from pyspark.sql import SparkSession
 from pyspark.sql.types import (
     StructType, StructField,
     StringType, DoubleType, BooleanType
 )
 from src.bronze_layer import add_ingestion_metadata, RAW_SCHEMA
-
-
-@pytest.fixture(scope="module")
-def spark():
-    """
-    Create a single shared SparkSession for all unit tests.
-    Using scope="module" means Spark starts once per test
-    file rather than once per test — significantly faster.
-    """
-    spark = SparkSession.builder \
-        .appName("BronzeUnitTests") \
-        .master("local[2]") \
-        .config("spark.sql.shuffle.partitions", "2") \
-        .getOrCreate()
-    spark.sparkContext.setLogLevel("ERROR")
-    yield spark
-    spark.stop()
 
 
 @pytest.fixture(scope="module")

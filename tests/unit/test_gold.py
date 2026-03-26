@@ -8,7 +8,6 @@ in the Gold layer using small known datasets.
 """
 
 import pytest
-from pyspark.sql import SparkSession
 from pyspark.sql.types import (
     StructType, StructField,
     StringType, DoubleType, BooleanType, TimestampType
@@ -19,18 +18,6 @@ from src.gold_layer import (
     build_merchant_analytics,
     build_monthly_trends
 )
-
-
-@pytest.fixture(scope="module")
-def spark():
-    spark = SparkSession.builder \
-        .appName("GoldUnitTests") \
-        .master("local[2]") \
-        .config("spark.sql.shuffle.partitions", "2") \
-        .getOrCreate()
-    spark.sparkContext.setLogLevel("ERROR")
-    yield spark
-    spark.stop()
 
 
 @pytest.fixture(scope="module")

@@ -8,7 +8,6 @@ to verify correct behaviour on known input data.
 """
 
 import pytest
-from pyspark.sql import SparkSession
 from pyspark.sql.types import (
     StructType, StructField,
     StringType, DoubleType, BooleanType, TimestampType
@@ -24,18 +23,6 @@ from src.silver_layer import (
     VALID_CHANNELS,
     VALID_STATUSES
 )
-
-
-@pytest.fixture(scope="module")
-def spark():
-    spark = SparkSession.builder \
-        .appName("SilverUnitTests") \
-        .master("local[2]") \
-        .config("spark.sql.shuffle.partitions", "2") \
-        .getOrCreate()
-    spark.sparkContext.setLogLevel("ERROR")
-    yield spark
-    spark.stop()
 
 
 @pytest.fixture(scope="module")

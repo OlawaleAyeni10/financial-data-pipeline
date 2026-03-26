@@ -68,9 +68,10 @@ def build_customer_summary(df: DataFrame) -> DataFrame:
         .orderBy(F.col("channel_count").desc())
 
     preferred_channel = channel_counts \
-        .withColumn("rank", F.rank().over(channel_window)) \
-        .filter(F.col("rank") == 1) \
-        .select("customer_id", F.col("channel").alias("preferred_channel"))
+    .withColumn("rank", F.rank().over(channel_window)) \
+    .filter(F.col("rank") == 1) \
+    .groupBy("customer_id") \
+    .agg(F.first("channel").alias("preferred_channel"))
 
     # Most frequent merchant category per customer
     category_counts = df.groupBy("customer_id", "merchant_category") \
