@@ -1,5 +1,5 @@
-pyspark
-faker
-pandas
-pytest
-pytest-mock
+pyspark==4.1.1
+faker==37.1.0
+pandas==2.2.3
+pytest==8.3.5
+pytest-mock==3.14.0
