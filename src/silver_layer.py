@@ -195,7 +195,7 @@ def write_silver(df: DataFrame) -> None:
     partitioned by transaction_month for query efficiency.
 
     Partitioning by month is a common pattern in financial
-    services pipelines — most analytical queries filter
+    services pipelines, most analytical queries filter
     by time period, so partitioning eliminates unnecessary
     file scans and significantly improves query performance.
 

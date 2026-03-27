@@ -200,7 +200,7 @@ def build_monthly_trends(df: DataFrame) -> DataFrame:
     Build monthly transaction trend analysis.
 
     Uses window functions to calculate month-over-month
-    growth rates — a key metric in financial services
+    growth rates, a key metric in financial services
     for spotting emerging patterns and anomalies.
 
     Args:
